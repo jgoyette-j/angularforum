@@ -32,7 +32,7 @@
 			<hr>
 			<div>
 			  <ul class="pagination">
-			    <li ng-cloak ng-class="{'disabled' : forumCtrl.currentPage != 1}"><a href="#" ng-click="forumCtrl.currentPage != 1||forumCtrl.prevPage()">Prev</a></li>
+			    <li ng-cloak ng-class="{'disabled' : forumCtrl.currentPage == 0}"><a href="#" ng-click="forumCtrl.currentPage == 0||forumCtrl.prevPage()">Prev</a></li>
 			    <li ng-repeat="pageNumber in forumCtrl.pages" ng-class="{'active' : forumCtrl.currentPage == $index}"><a href="#" ng-click="forumCtrl.retrieveForumsByPage(pageNumber)">{{pageNumber+1}}</a></li>
 			    <li ng-cloak ng-class="{'disabled' : forumCtrl.currentPage == forumCtrl.pages.length-1}"><a href="#" ng-click="forumCtrl.currentPage == forumCtrl.pages.length-1||forumCtrl.nextPage()">Next</a></li>
 			  </ul>

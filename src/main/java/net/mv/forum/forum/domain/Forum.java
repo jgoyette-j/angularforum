@@ -39,7 +39,7 @@ public class Forum {
 	@Column(name = "date_authored")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCreated;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "forum", fetch = FetchType.EAGER, targetEntity = Post.class)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "forum", fetch = FetchType.LAZY, targetEntity = Post.class)
 	private List<Post> posts = new ArrayList<Post>();
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Category category;
