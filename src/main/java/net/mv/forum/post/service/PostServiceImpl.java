@@ -34,6 +34,9 @@ public class PostServiceImpl implements PostService{
 	@Override
 	/**
 	 * Figure this out why it was not properly saving Post objects.
+	 * 3-8-16 ~Jeff : Started double saving posts to a forum. Assume 
+	 * that it has to do with getting the forum and adding it? Look 
+	 * for the ***** for the lines with suspect code.
 	 */
 	public PostDto addPost(PostDto postDto) {
 		
@@ -48,9 +51,11 @@ public class PostServiceImpl implements PostService{
 		post.setUser(user);
 		post.setDateAuthored(new Date());
 		
-		forum.getPosts().add(post);
-		//postRepository.saveAndFlush(post);
-		forumRepository.save(forum);
+		//*****
+		//forum.getPosts().add(post);
+		postRepository.save(post);
+		//*****
+		//forumRepository.save(forum);
 		
 		postDto.setId(post.getId());
 		postDto.setCreated(post.getDateAuthored());
