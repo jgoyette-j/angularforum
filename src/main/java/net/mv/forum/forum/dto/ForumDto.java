@@ -26,13 +26,37 @@ public class ForumDto {
 	public ForumDto() {
 	}
 
+	/**
+	 * Legacy ForumDto constructor.
+	 * The commented out for loop was
+	 * used to build all ForumDto objects.
+	 * This seemed to cause an EAGER fetch
+	 * effect in the service layer.
+	 * @param forum
+	 */
 	public ForumDto(Forum forum) {
 		this.id = forum.getId();
 		this.title = forum.getName();
 		this.author = forum.getUser().getUsername();
 		this.created = forum.getDateCreated();
-		for (Post post : forum.getPosts()) {
+/*		for (Post post : forum.getPosts()) {
 			posts.add(new PostDto(post));
+		}*/
+	}
+	
+	/**
+	 * new ForumDto constructor.
+	 * Used to eagerly add posts to the ForumDto.
+	 * @param forum
+	 * @param posts
+	 */
+	public ForumDto(Forum forum, List<Post> posts) {
+		this.id = forum.getId();
+		this.title = forum.getName();
+		this.author = forum.getUser().getUsername();
+		this.created = forum.getDateCreated();
+		for (Post post : posts) {
+			this.posts.add(new PostDto(post));
 		}
 	}
 

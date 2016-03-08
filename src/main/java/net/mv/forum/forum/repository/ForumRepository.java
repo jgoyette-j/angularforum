@@ -9,6 +9,12 @@ import org.springframework.data.jpa.repository.Query;
 
 import net.mv.forum.forum.domain.Forum;
 
+/**
+ * ForumRepository interface using Spring Data to handle
+ * ORM operations on Forum objects. 
+ * @author Jeff
+ *
+ */
 public interface ForumRepository extends JpaRepository<Forum, Long>{
 	
 	public List<Forum> findAllByOrderByDateCreatedDesc();
