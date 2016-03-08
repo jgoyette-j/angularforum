@@ -19,6 +19,8 @@ forumApp.controller('ForumCtrl',
 			forumCtrl.currentPage = 0;
 
 			forumCtrl.pageSize = 5;
+			
+			forumCtrl.curCategoryId = $stateParams.categoryId;
 
 			/*
 			 * Promise to get the count of total Forum objects

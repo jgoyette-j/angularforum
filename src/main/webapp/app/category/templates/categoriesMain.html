@@ -1,0 +1,43 @@
+<div class="jumbotron">
+	<h1>Welcome {{categoryCtrl.curUser.username}}!</h1>
+	<p>This is the category landing page. Please select a category to see the available forums.</p>
+</div>
+
+<div class="row">
+	<div class="col-lg-6">
+		<div class="well">
+
+			<table class="table table-striped table-hover">
+
+				<tr>
+
+					<th>Title</th>
+
+				</tr>
+
+				<tr ng-repeat="category in categoryCtrl.categories.list">
+
+					<td><a ui-sref="forum({categoryId:category.id})">{{category.name}}</a></td>
+
+				</tr>
+
+			</table>
+
+			<hr>
+			<div>
+				<ul class="pagination">
+					<li ng-cloak ng-class="{'disabled' : categoryCtrl.currentPage != 1}"><a
+						href="#"
+						ng-click="categoryCtrl.currentPage != 1||categoryCtrl.prevPage()">Prev</a></li>
+					<li ng-repeat="pageNumber in categoryCtrl.pages"
+						ng-class="{'active' : categoryCtrl.currentPage == $index}"><a
+						href="#" ng-click="categoryCtrl.retrieveForumsByPage(pageNumber)">{{pageNumber+1}}</a></li>
+					<li ng-cloak
+						ng-class="{'disabled' : categoryCtrl.currentPage == categoryCtrl.pages.length-1}"><a
+						href="#"
+						ng-click="categoryCtrl.currentPage == categoryCtrl.pages.length-1||categoryCtrl.nextPage()">Next</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

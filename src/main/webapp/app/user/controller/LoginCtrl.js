@@ -25,6 +25,7 @@ forumApp.controller('LoginCtrl', function(UserService, $state, $rootScope){
 						data.authenticated = true;
 						UserService.setUser(data);
 						$state.go('forum');
+						/*$state.go('category');*/
 					},function(error){
 						console.log(error);
 					});

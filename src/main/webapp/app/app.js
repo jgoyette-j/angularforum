@@ -20,6 +20,12 @@ forumApp.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : 'app/home/templates/home.html',
 		controller: 'HomeCtrl as homeCtrl'
 	})
+	.state('category',{
+		url: '/category',
+		templateUrl : 'app/category/templates/categoriesMain.html',
+		controller: 'CategoryCtrl as categoryCtrl',
+		resolve: {authenticate: authenticate}
+	})
 	.state('forum', {
 		url: '/forum',
 		templateUrl : 'app/forum/templates/forumsMain.html',
