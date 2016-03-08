@@ -21,6 +21,7 @@ public class ForumDto {
 	private Date created;
 	@JsonProperty(value = "posts")
 	private List<PostDto> posts = new ArrayList<PostDto>();
+	private Long categoryId;
 
 	public ForumDto() {
 	}
@@ -30,7 +31,7 @@ public class ForumDto {
 		this.title = forum.getName();
 		this.author = forum.getUser().getUsername();
 		this.created = forum.getDateCreated();
-		for(Post post: forum.getPosts()){
+		for (Post post : forum.getPosts()) {
 			posts.add(new PostDto(post));
 		}
 	}
@@ -78,6 +79,14 @@ public class ForumDto {
 
 	public void setPosts(List<PostDto> posts) {
 		this.posts = posts;
+	}
+
+	public Long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 
 }

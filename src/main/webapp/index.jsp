@@ -25,14 +25,19 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li ui-sref-active="active" ng-cloak ng-show="!nav.currentUser.authenticated"><a ui-sref="login">Login</a></li>
-					<li ui-sref-active="active" ng-cloak ng-show="!nav.currentUser.authenticated"><a ui-sref="register">Register</a></li>
-					<li ui-sref-active="active" ng-cloak ng-show="nav.currentUser.authenticated"><a ui-sref="forum">Forums</a></li>
-					<li ng-cloak ng-show="nav.currentUser.authenticated"><a href="#" ng-click="nav.logout()">Logout</a></li>
+					<li ui-sref-active="active" ng-cloak
+						ng-show="!nav.currentUser.authenticated"><a ui-sref="login">Login</a></li>
+					<li ui-sref-active="active" ng-cloak
+						ng-show="!nav.currentUser.authenticated"><a
+						ui-sref="register">Register</a></li>
+					<li ui-sref-active="active" ng-cloak
+						ng-show="nav.currentUser.authenticated"><a ui-sref="forum">Forums</a></li>
+					<li ng-cloak ng-show="nav.currentUser.authenticated"><a
+						href="#" ng-click="nav.logout()">Logout</a></li>
 				</ul>
-<!-- 				<ul class="nav navbar-nav navbar-right"> -->
-<!-- 					<li><a href="#">Link</a></li> -->
-<!-- 				</ul> -->
+				<!-- 				<ul class="nav navbar-nav navbar-right"> -->
+				<!-- 					<li><a href="#">Link</a></li> -->
+				<!-- 				</ul> -->
 			</div>
 		</div>
 	</nav>
@@ -53,6 +58,8 @@
 	<script
 		src="${ pageContext.request.contextPath }/app/post/service/PostService.js"></script>
 	<script type="text/javascript"
+		src="${ pageContext.request.contextPath }/app/category/service/CategoryService.js"></script>
+	<script type="text/javascript"
 		src="${ pageContext.request.contextPath }/app/user/controller/LoginCtrl.js"></script>
 	<script type="text/javascript"
 		src="${ pageContext.request.contextPath }/app/user/controller/RegisterCtrl.js"></script>
@@ -64,6 +71,8 @@
 		src="${ pageContext.request.contextPath }/app/nav/controller/NavCtrl.js"></script>
 	<script type="text/javascript"
 		src="${ pageContext.request.contextPath }/app/forum/controller/ForumDetailCtrl.js"></script>
+	<script type="text/javascript"
+		src="${ pageContext.request.contextPath }/app/category/controller/CategoryCtrl.js"></script>
 
 </body>
 </html>

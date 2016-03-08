@@ -3,7 +3,6 @@ package net.mv.forum.forum.domain;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,6 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import net.mv.forum.category.domain.Category;
 import net.mv.forum.forum.dto.ForumDto;
 import net.mv.forum.post.domain.Post;
 import net.mv.forum.user.domain.User;
@@ -39,8 +39,10 @@ public class Forum {
 	@Column(name = "date_authored")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCreated;
-	@OneToMany(cascade=CascadeType.ALL ,mappedBy="forum", fetch = FetchType.EAGER, targetEntity = Post.class)
-	private List<Post> posts=new ArrayList<Post>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "forum", fetch = FetchType.EAGER, targetEntity = Post.class)
+	private List<Post> posts = new ArrayList<Post>();
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Category category;
 
 	public Forum() {
 	}
@@ -92,6 +94,14 @@ public class Forum {
 
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 }
