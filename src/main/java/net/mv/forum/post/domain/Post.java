@@ -27,6 +27,7 @@ public class Post {
 	@Column(name = "p_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(length=5000)
 	private String text;
 	@Column(name="date_authored")
 	@Temporal(TemporalType.TIMESTAMP)

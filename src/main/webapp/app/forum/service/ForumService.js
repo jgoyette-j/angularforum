@@ -7,6 +7,7 @@ forumApp.service('ForumService', function($http, $q) {
 		author : '',
 		title : '',
 		created : '',
+		category : {},
 		posts : [ {
 			id : 0,
 			author : '',
@@ -68,6 +69,7 @@ forumApp.service('ForumService', function($http, $q) {
 		return promise;
 	};
 	
+	// Old way that returns ALL paginated forums regardless of their category.
 	forumService.retrievePaginatedForums = function(page,size){
 		var promise = $http.get('forum/viewPaginated',{params:{page:page,size:size}}).then(
 				function(success){
@@ -82,6 +84,7 @@ forumApp.service('ForumService', function($http, $q) {
 		return promise;
 	};
 	
+	// Old way the returns a simple count of EVERY forum.
 	forumService.retrieveForumCount = function(){
 		var promise = $http.get('forum/count')
 				.then(
@@ -94,6 +97,35 @@ forumApp.service('ForumService', function($http, $q) {
 				);
 		return promise;
 	}
+	
+	// New way that returns paginated forums by category.
+	forumService.retrievePaginatedForumsByCategory = function(categoryId,page,size){
+		var promise = $http.get('forum/viewPaginatedForumsByCategory',{params:{categoryId:categoryId,page:page,size:size}}).then(
+				function(success){
+					//console.log('forum retrieval success');
+					//console.log(success.data.content);
+					return success.data.content;
+				},
+				function(error){
+					console.log('forum retrieval error');
+					return $q.reject(error);
+		});
+		return promise;
+	};
+	
+	// New way the returns a count of forum by category.
+	forumService.retrieveForumCountByCategory = function(categoryId){
+		var promise = $http.get('forum/countByCategoryId',{params:{categoryId:categoryId}})
+				.then(
+						function(success){
+							return success.data;
+						},function(error){
+							console.log("Error retrieving count.");
+							return $q.reject(error);
+						}
+				);
+		return promise;
+	};
 	
 	forumService.addForum = function(data) {
 		//console.log(data);
@@ -108,6 +140,7 @@ forumApp.service('ForumService', function($http, $q) {
 		return promise;
 		//forumService.forums.push(data);
 	};
+	
 	forumService.addPostToForum = function(data){
 		//console.log("Adding post of: " + data);
 		var promise = $http.post('post/add', data).then(

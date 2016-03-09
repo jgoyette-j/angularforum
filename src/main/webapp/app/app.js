@@ -27,7 +27,7 @@ forumApp.config(function($stateProvider, $urlRouterProvider) {
 		resolve: {authenticate: authenticate}
 	})
 	.state('forum', {
-		url: '/forum',
+		url: '/forum/:categoryId',
 		templateUrl : 'app/forum/templates/forumsMain.html',
 		controller: 'ForumCtrl as forumCtrl',
 		resolve: {authenticate: authenticate}

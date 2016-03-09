@@ -21,11 +21,11 @@ forumApp.controller('ForumCtrl',
 			forumCtrl.pageSize = 5;
 			
 			forumCtrl.curCategoryId = $stateParams.categoryId;
-
+			
 			/*
 			 * Promise to get the count of total Forum objects
 			 */
-			var countPromise = ForumService.retrieveForumCount();
+			var countPromise = ForumService.retrieveForumCountByCategory(forumCtrl.curCategoryId);
 
 			countPromise.then(function(success) {
 				forumCtrl.count = success.count;
@@ -65,11 +65,12 @@ forumApp.controller('ForumCtrl',
 			}
 
 			forumCtrl.retrieveForums = function() {
-				var promise = ForumService.retrievePaginatedForums(
-						forumCtrl.currentPage, forumCtrl.pageSize);
+//				var promise = ForumService.retrievePaginatedForums(forumCtrl.currentPage, forumCtrl.pageSize);
+				var promise = ForumService.retrievePaginatedForumsByCategory(forumCtrl.curCategoryId, forumCtrl.currentPage,forumCtrl.pageSize);
 
 				promise.then(function(success) {
 					ForumService.setForums(success);
+					console.log(success);
 				}, function(error) {
 					console.log('Forum retrieval error');
 				});
@@ -79,8 +80,8 @@ forumApp.controller('ForumCtrl',
 
 			forumCtrl.retrieveForumsByPage = function(page) {
 				forumCtrl.currentPage = page;
-				var promise = ForumService.retrievePaginatedForums(page,
-						forumCtrl.pageSize);
+				var promise = ForumService.retrievePaginatedForumsByCategory(forumCtrl.curCategoryId, page, forumCtrl.pageSize);
+				//var promise = ForumService.retrievePaginatedForums(page, forumCtrl.pageSize);
 
 				promise.then(function(success) {
 					ForumService.setForums(success);
@@ -97,7 +98,11 @@ forumApp.controller('ForumCtrl',
 
 				forumCtrl.forum.author = forumCtrl.curUser.username;
 				forumCtrl.forum.posts[0].author = forumCtrl.curUser.username;
-
+				/*
+				 * Add current category ID to the forum for submission.
+				 */
+				forumCtrl.forum.category.id = forumCtrl.curCategoryId;
+				
 				var addPromise = ForumService.addForum(forumCtrl.forum);
 
 				addPromise.then(function(success) {
@@ -114,6 +119,7 @@ forumApp.controller('ForumCtrl',
 					author : '',
 					title : '',
 					created : '',
+					category : {},
 					posts : [ {
 						id : 0,
 						author : '',
@@ -144,13 +150,13 @@ forumApp.controller('ForumCtrl',
 			var poll = function() {
 //				$timeout(function() {
 					// service call to update forums
-					var promise = ForumService.retrievePaginatedForums(
+					var promise = ForumService.retrievePaginatedForumsByCategory(forumCtrl.curCategoryId,
 							forumCtrl.currentPage, forumCtrl.pageSize);
 
 					promise.then(function(success) {
 
 						var pollCountPromise = ForumService
-								.retrieveForumCount();
+								.retrieveForumCountByCategory(forumCtrl.curCategoryId);
 
 						pollCountPromise.then(function(success) {
 							forumCtrl.count = success.count;
