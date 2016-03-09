@@ -28,12 +28,13 @@
 					<li ui-sref-active="active" ng-cloak
 						ng-show="!nav.currentUser.authenticated"><a ui-sref="login">Login</a></li>
 					<li ui-sref-active="active" ng-cloak
-						ng-show="!nav.currentUser.authenticated"><a
-						ui-sref="register">Register</a></li>
+						ng-show="!nav.currentUser.authenticated"><a ui-sref="register">Register</a></li>
+					<li ui-sref-active="active" ng-cloak
+						ng-show="nav.currentUser.authenticated"><a ui-sref="category">Categories</a></li>
 					<li ui-sref-active="active" ng-cloak
 						ng-show="nav.currentUser.authenticated"><a ui-sref="forum">Forums</a></li>
-					<li ng-cloak ng-show="nav.currentUser.authenticated"><a
-						href="#" ng-click="nav.logout()">Logout</a></li>
+					
+					<li ng-cloak ng-show="nav.currentUser.authenticated"><a href="#" ng-click="nav.logout()">Logout</a></li>
 				</ul>
 				<!-- 				<ul class="nav navbar-nav navbar-right"> -->
 				<!-- 					<li><a href="#">Link</a></li> -->

@@ -24,8 +24,8 @@ forumApp.controller('LoginCtrl', function(UserService, $state, $rootScope){
 					detailPromise.then(function(data){
 						data.authenticated = true;
 						UserService.setUser(data);
-						$state.go('forum');
-						/*$state.go('category');*/
+						/*$state.go('forum');*/
+						$state.go('category');
 					},function(error){
 						console.log(error);
 					});

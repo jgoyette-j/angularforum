@@ -1,7 +1,7 @@
 /**
  * 
  */
-forumApp.controller('NavCtrl', function(UserService, $state){
+forumApp.controller('NavCtrl', function(UserService, CategoryService, $state){
 	
 	var nav = this;
 	

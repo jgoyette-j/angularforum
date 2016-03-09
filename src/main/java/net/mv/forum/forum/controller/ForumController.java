@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -72,6 +73,20 @@ public class ForumController {
 	@RequestMapping(value="/top",produces={MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<ForumDto>> viewFiveMostRecentForums(){
 		return new ResponseEntity<List<ForumDto>>(forumServiceImpl.findTopFiveForums(), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/viewPaginatedForumsByCategory",produces={MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<Page<ForumDto>> viewPaginatedForumsByCategory(Long categoryId, Integer page, Integer size){
+		
+		Pageable pageRequest = new PageRequest(page, size, Direction.DESC, "dateCreated");
+		
+		return new ResponseEntity<Page<ForumDto>>(forumServiceImpl.findForumsByCategory(categoryId, pageRequest), HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value="/countByCategoryId", produces={MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<CountDto> countForumsByCategoryId(Long categoryId){
+		return new ResponseEntity<CountDto>(new CountDto(forumServiceImpl.findForumCountByCategoryId(categoryId)),HttpStatus.OK);
 	}
 
 }

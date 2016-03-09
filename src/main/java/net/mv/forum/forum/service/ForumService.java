@@ -15,5 +15,11 @@ public interface ForumService {
 	public ForumDto findForumById(Long id);
 	public Long findForumCount();
 	public List<ForumDto> findTopFiveForums();
+	/**
+	 * Use this new format for method names. The other
+	 * way with Pageable is not really finding all of them anyhow.
+	 */
+	public Page<ForumDto> findForumsByCategory(Long categoryId,Pageable page);
+	public Long findForumCountByCategoryId(Long categoryId);
 
 }
