@@ -31,8 +31,9 @@
 						ng-show="!nav.currentUser.authenticated"><a ui-sref="register">Register</a></li>
 					<li ui-sref-active="active" ng-cloak
 						ng-show="nav.currentUser.authenticated"><a ui-sref="category">Categories</a></li>
+					<!-- Added current category validation -->
 					<li ui-sref-active="active" ng-cloak
-						ng-show="nav.currentUser.authenticated"><a ui-sref="forum">Forums</a></li>
+						ng-show="nav.currentUser.authenticated && nav.currentCategory.category != null"><a ui-sref="forum({categoryId:nav.currentCategory.category.id})">Forums in {{nav.currentCategory.category.name}}</a></li>
 					
 					<li ng-cloak ng-show="nav.currentUser.authenticated"><a href="#" ng-click="nav.logout()">Logout</a></li>
 				</ul>

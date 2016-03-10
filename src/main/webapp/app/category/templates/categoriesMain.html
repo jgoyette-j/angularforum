@@ -17,7 +17,7 @@
 
 				<tr ng-repeat="category in categoryCtrl.categories.list">
 
-					<td><a ui-sref="forum({categoryId:category.id})">{{category.name}}</a></td>
+					<td><a ng-click="categoryCtrl.setCurrentCategory(category)" ui-sref="forum({categoryId:category.id})">{{category.name}}</a></td>
 
 				</tr>
 
