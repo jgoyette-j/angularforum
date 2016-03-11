@@ -1,4 +1,4 @@
-<div class="col-md-6">
+<div class="row col-md-12">
 	<div class="well" ng-repeat="forum in forumDetailCtrl.forums.list"
 		ng-if="forumDetailCtrl.curForumId == forum.id">
 
@@ -14,28 +14,28 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">{{post.author}} - {{post.created}}</h3>
 				</div>
-				<div class="panel-body" style="word-wrap: break-word;">{{post.text}}</div>
+				<div class="panel-body" style="word-wrap: break-word;" ng-bind-html="post.text"></div>
 			</div>
 
 		</div>
 
 	</div>
 </div>
-<div class="col-md-6">
+<div class="row col-md-12">
 	<div class="well">
 
 		<h1>Reply to Forum</h1>
+		
+		<!-- 
+			Add in message for showing text field error messages.
+		 -->
 
 		<form class="form-horizontal" name="postForm"
 			ng-submit="forumDetailCtrl.addPost()">
 			<fieldset>
 				<div class="form-group">
-					<label for="postForm" class="col-lg-2 control-label">Text</label>
-					<div class="col-lg-10">
-						<textarea class="form-control" name="postForm.text" rows="3"
-							id="postForm.text" ng-model="forumDetailCtrl.post.text" ng-required="true"></textarea>
-						<p class="help-block" ng-show="postForm.text.$invalid && !postForm.text.$pristine">Please add a first post to your forum...</p>
-					</div>
+					<p class="help-block" ng-show="postForm.text.$invalid && !postForm.text.$pristine">Please add a post to your forum.</p>
+					<text-angular ng-model="forumDetailCtrl.post.text" name="postForm.text" ta-text-editor-class="border-around" ta-html-editor-class="border-around" ng-required="true"></text-angular>
 				</div>
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">

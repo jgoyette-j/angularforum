@@ -1,4 +1,4 @@
-var forumApp = angular.module('ForumApp', [ 'ui.router' ]);
+var forumApp = angular.module('ForumApp', [ 'ui.router', 'textAngular' , 'ngMessages']);
 
 forumApp.config(function($stateProvider, $urlRouterProvider) {
 	
