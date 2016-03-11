@@ -84,5 +84,13 @@ forumApp.controller('CategoryCtrl', function($state, $stateParams,
 			console.log('Category retrieval error');
 		});
 	};
+	
+	/*
+	 * Added method to call to set current category based on selection.
+	 */
+	categoryCtrl.setCurrentCategory = function(category){
+		console.log('Setting current: ' + category.name);
+		CategoryService.setCurrentCategory(category);
+	};
 
 });

@@ -6,6 +6,21 @@ forumApp.service('CategoryService', function($http,$q){
 			list:null
 	};
 	
+	/*
+	 * Added current category to keep track of that.
+	 */
+	categoryService.currentCategory = {
+			category:null
+	};
+	
+	categoryService.getCurrentCategory = function() {
+		return categoryService.currentCategory;
+	};
+	
+	categoryService.setCurrentCategory = function(data){
+		categoryService.currentCategory.category = data;
+	};
+	
 	categoryService.getCategories = function(){
 		return categoryService.categories;
 	};

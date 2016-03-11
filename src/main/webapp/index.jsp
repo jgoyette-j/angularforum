@@ -8,6 +8,45 @@
 <link
 	href="${ pageContext.request.contextPath }/app/resources/bootstrap.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/app/resources/textAngular/textAngular.css"> 
+
+	<!-- Angular -->
+	<script
+		src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+	<!-- UI-Router -->
+	<script
+		src="//angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+	<!-- load ngmessages -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-messages.js"></script>	
+
+<style type="text/css">
+
+
+/* Editor styling */
+
+.ta-toolbar {
+	padding: 10px 10px 5px;
+	margin-left: 0px; /* Override bootstrap */
+}
+
+.ta-toolbar .btn-group {
+	margin-bottom: 5px;
+}
+
+.ta-editor, .white-box {
+	padding: 10px;
+	background-color: #FFF;
+	border: 1px solid #EEE;
+	color: black;
+}
+
+textarea.ta-bind {
+	width: 100%;
+}
+
+</style>
+
 </head>
 <body ng-app="ForumApp">
 
@@ -19,7 +58,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Training Discussions</a>
+				<a class="navbar-brand" ui-sref="home">Training Discussions</a>
 			</div>
 
 			<div class="collapse navbar-collapse"
@@ -31,8 +70,9 @@
 						ng-show="!nav.currentUser.authenticated"><a ui-sref="register">Register</a></li>
 					<li ui-sref-active="active" ng-cloak
 						ng-show="nav.currentUser.authenticated"><a ui-sref="category">Categories</a></li>
+					<!-- Added current category validation -->
 					<li ui-sref-active="active" ng-cloak
-						ng-show="nav.currentUser.authenticated"><a ui-sref="forum">Forums</a></li>
+						ng-show="nav.currentUser.authenticated && nav.currentCategory.category != null"><a ui-sref="forum({categoryId:nav.currentCategory.category.id})">Forums in {{nav.currentCategory.category.name}}</a></li>
 					
 					<li ng-cloak ng-show="nav.currentUser.authenticated"><a href="#" ng-click="nav.logout()">Logout</a></li>
 				</ul>
@@ -44,12 +84,12 @@
 	</nav>
 
 	<div class="container-fluid" ui-view autoscroll="true"></div>
-	<!-- Angular -->
-	<script
-		src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.js"></script>
-	<!-- UI-Router -->
-	<script
-		src="//angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+	<script type="text/javascript"
+		src="${ pageContext.request.contextPath }/app/resources/textAngular/textAngular-rangy.min.js"></script>
+	<script type="text/javascript"
+		src="${ pageContext.request.contextPath }/app/resources/textAngular/textAngular-sanitize.min.js"></script>
+	<script type="text/javascript"
+		src="${ pageContext.request.contextPath }/app/resources/textAngular/textAngular.min.js"></script>
 	<script type="text/javascript"
 		src="${ pageContext.request.contextPath }/app/app.js"></script>
 	<script type="text/javascript"

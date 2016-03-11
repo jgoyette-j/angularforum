@@ -3,6 +3,8 @@ forumApp.controller('ForumCtrl',
 
 			var forumCtrl = this;
 			
+			forumCtrl.addForumToggle = true;
+			
 			forumCtrl.forums = ForumService.getForums();
 
 			forumCtrl.forum = ForumService.getForum();
@@ -95,7 +97,6 @@ forumApp.controller('ForumCtrl',
 			 * pass it to the ForumService for submission.
 			 */
 			forumCtrl.doAdd = function() {
-
 				forumCtrl.forum.author = forumCtrl.curUser.username;
 				forumCtrl.forum.posts[0].author = forumCtrl.curUser.username;
 				/*
@@ -131,6 +132,10 @@ forumApp.controller('ForumCtrl',
 			};
 
 			console.log("ForumCtrl init");
+			
+			forumCtrl.toggleAddForum = function(){
+				forumCtrl.addForumToggle = !forumCtrl.addForumToggle;
+			}
 			
 			/*
 			 * Fixed duplicate poller based on multiple controllers being created.

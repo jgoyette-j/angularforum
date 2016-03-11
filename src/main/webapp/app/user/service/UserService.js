@@ -45,6 +45,7 @@ forumApp.service('UserService', function($http, $q) {
 		// Good
 		userService.curUser.id = user.id;
 		userService.curUser.username = user.username;
+		userService.curUser.password = user.password;
 		userService.curUser.email = user.email;
 		userService.curUser.authenticated = user.authenticated;
 

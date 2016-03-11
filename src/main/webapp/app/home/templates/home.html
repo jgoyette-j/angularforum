@@ -3,11 +3,21 @@
 	<p>Hi! Welcome to my new forum built with AngularJs and Bootstrap.
 		Please take a minute to check out some of the new features that have
 		been added since you were here last!</p>
+		
+		<div class="well">
+			<h2>News:</h2>
+			
+			<ul>
+				<li>The GitHub page is open for business! Feel free to specify any
+				issues or collaborate! <a href="https://github.com/jgoyette-j/angularforum/issues">GitHub</a>
+				</li>
+			</ul>
+		</div>
 
 </div>
 
 <div class="row">
-	<div class="col-lg-3">
+	<div class="col-lg-4">
 		<div class="well">
 			<h2>Recent Forums:</h2>
 			<table class="table table-striped table-hover">
@@ -31,18 +41,18 @@
 			</table>
 		</div>
 	</div>
-	<div class="col-lg-3">
+	<div class="col-lg-4">
 		<div class="well">
 			<h2>Recent Posts:</h2>
 			<div class="panel panel-info" ng-repeat="post in homeCtrl.recentPosts.list">
 				<div class="panel-heading">
 					<h3 class="panel-title">{{post.author}} - {{post.created}}</h3>
 				</div>
-				<div class="panel-body" style="word-wrap: break-word;">{{post.text}}</div>
+				<div class="panel-body" style="word-wrap: break-word;" ng-bind-html="post.text"></div>
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-3">
+	<div class="col-lg-4">
 		<div class="well">
 			<h2>New Users:</h2>
 			<div class="panel panel-info" ng-repeat="user in homeCtrl.recentUsers.list">
@@ -52,15 +62,5 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-3">
-		<div class="well">
-			<h2>News:</h2>
-			
-			<ul>
-				<li>The GitHub page is open for business! Feel free to specify any
-				issues or collaborate! <a href="https://github.com/jgoyette-j/angularforum/issues">GitHub</a>
-				</li>
-			</ul>
-		</div>
-	</div>
+
 </div>
